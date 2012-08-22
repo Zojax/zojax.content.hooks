@@ -1,0 +1,13 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:i18n="http://namespaces.zope.org/i18n"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:z3c="http://namespaces.zope.org/z3c"
+   i18n_domain="zojax.content.hooks">
+
+  <!-- vocabulary -->
+  <utility
+     name="zojax.content.hooks"
+     factory=".vocabulary.HooksVocabulary" />
+
+</configure>

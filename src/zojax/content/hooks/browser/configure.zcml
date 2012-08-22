@@ -1,0 +1,13 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.content.hooks">
+
+  <zojax:pagelet
+     name="content.hook"
+     type="form.subform"
+     for="zojax.hooks.interfaces.IBlogPostHookable"
+     class=".hook.Hook"/>
+
+</configure>
