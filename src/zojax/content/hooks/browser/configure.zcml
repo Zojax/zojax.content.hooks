@@ -7,7 +7,17 @@
   <zojax:pagelet
      name="content.hook"
      type="form.subform"
-     for="zojax.hooks.interfaces.IBlogPostHookable"
-     class=".hook.Hook"/>
+     for="..interfaces.IContentHookable
+        zojax.content.forms.interfaces.IContentStep"
+     class=".edit_hook.EditHook"/>
 
+  <zojax:pagelet
+       name="content.iso.hook"
+       type="form.subform"
+       for="..interfaces.IContentHookable
+          zojax.content.forms.form.AddForm"
+       class=".edit_hook.EditIsoHook"/>
+
+zojax.content.type.interfaces.IContentType
+          zojax.content.forms.form.AddForm
 </configure>

@@ -10,4 +10,6 @@
      name="zojax.content.hooks"
      factory=".vocabulary.HooksVocabulary" />
 
+  <!-- browser view -->
+  <include package=".browser" />
 </configure>

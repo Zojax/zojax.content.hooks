@@ -1,8 +1,7 @@
 from zope import interface, schema
-from zojax.widget.checkbox.field import CheckboxList
 from zope.i18nmessageid import MessageFactory
 
-_ = MessageFactory('zojax.quick.contenttypes')
+_ = MessageFactory('zojax.content.hooks')
 
 
 class IContentHook(interface.Interface):
@@ -10,8 +9,7 @@ class IContentHook(interface.Interface):
         title = _(u'Title'),
         description = _(u'Hook title.'),
         default = u'',
-        missing_value = u'',
-        required = True)
+        missing_value = u'')
 
     selectable = schema.Bool(title=_(u'Show states on map'), default=False)
 
@@ -20,3 +18,6 @@ class IContentHook(interface.Interface):
 
     def __call__(self):
         pass
+
+class IContentHookable(interface.Interface):
+    pass
