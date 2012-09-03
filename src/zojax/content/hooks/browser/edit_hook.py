@@ -2,6 +2,7 @@ from zope import component
 
 from zojax.content.hooks.browser.interfaces import IContexHookForm
 from zojax.content.hooks.interfaces import IContentHook, IContentHookable
+from zojax.content.space.interfaces import ISpace
 from zojax.content.space.utils import getSpace
 from zojax.layoutform import Fields, PageletEditSubForm
 from zojax.layoutform.subform import PageletAddSubForm
@@ -27,8 +28,14 @@ class EditHook(PageletEditSubForm):
         pass
 
     def isAvailable(self):
-        if getSpace(self.parentForm).get('blog') != None:
-            return True
+        cur_space = getSpace(self.parentForm)
+        if cur_space.get('blog'):
+            cur_space = cur_space.__parent__
+            while ISpace.providedBy(cur_space):
+                if cur_space.get('blog'):
+                    return True
+                cur_space = cur_space.__parent__
+            return False
         else:
             return False
 
@@ -52,7 +59,13 @@ class EditIsoHook(PageletAddSubForm):
         pass
 
     def isAvailable(self):
-        if getSpace(self.parentForm).get('blog') != None:
-            return True
+        cur_space = getSpace(self.parentForm)
+        if cur_space.get('blog'):
+            cur_space = cur_space.__parent__
+            while ISpace.providedBy(cur_space):
+                if cur_space.get('blog'):
+                    return True
+                cur_space = cur_space.__parent__
+            return False
         else:
             return False
