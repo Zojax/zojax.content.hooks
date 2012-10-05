@@ -30,12 +30,7 @@ class EditHook(PageletEditSubForm):
     def isAvailable(self):
         cur_space = getSpace(self.parentForm)
         if cur_space.get('blog'):
-            cur_space = cur_space.__parent__
-            while ISpace.providedBy(cur_space) and cur_space.title!='Portal':
-                if cur_space.get('blog'):
-                    return True
-                cur_space = cur_space.__parent__
-            return False
+            return True
         else:
             return False
 
@@ -61,11 +56,6 @@ class EditIsoHook(PageletAddSubForm):
     def isAvailable(self):
         cur_space = getSpace(self.parentForm)
         if cur_space.get('blog'):
-            cur_space = cur_space.__parent__
-            while ISpace.providedBy(cur_space) and cur_space.title!='Portal':
-                if cur_space.get('blog'):
-                    return True
-                cur_space = cur_space.__parent__
-            return False
+            return True
         else:
             return False
