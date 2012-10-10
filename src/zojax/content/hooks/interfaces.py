@@ -11,7 +11,7 @@ class IContentHook(interface.Interface):
         default = u'',
         missing_value = u'')
 
-    selectable = schema.Bool(title=_(u'Show states on map'), default=False)
+    selectable = schema.Bool(title=_(u'Hook checkbox'), default=False)
 
     def isAvailable(self):
         pass
