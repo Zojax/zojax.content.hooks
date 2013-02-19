@@ -13,6 +13,9 @@ class IContentHook(interface.Interface):
 
     selectable = schema.Bool(title=_(u'Hook checkbox'), default=False)
 
+    # used by HooksVocabulary to display them in order
+    order = schema.Int(default=0)
+
     def isAvailable(self):
         pass
 
