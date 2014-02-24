@@ -1,0 +1,47 @@
+========
+Document
+========
+
+    >>> from zope import component, interface, event
+    >>> from zope.testbrowser.testing import Browser
+    >>> from zope.lifecycleevent import ObjectCreatedEvent
+    >>> from zojax.content.space.content import ContentSpace
+    >>> from zojax.content.hooks.tests.tests import Folder, Content
+    >>> from zope.app.component.hooks import setSite
+    >>> from zope.security.management import endInteraction, newInteraction
+    >>> root = getRootFolder()
+    >>> setSite(root)
+    >>> space = ContentSpace(title=u'Space')
+    >>> event.notify(ObjectCreatedEvent(space))
+    >>> root['space'] = space
+
+    >>> actor = Browser()
+    >>> actor.handleErrors = False
+    >>> actor.addHeader("Authorization", "Basic mgr:mgrpw")
+
+
+Install product
+
+    >>> actor.open("http://localhost/space/context.html/content/")
+    >>> actor.getLink('Workspaces').click()
+    >>> actor.getControl(name="workspaces.widgets.workspaces:list").value = ['documents']
+    >>> actor.getControl(name="content.edit.buttons.save").click()
+
+    >>> folder = Folder(title="Folder")
+    >>> event.notify(ObjectCreatedEvent(folder))
+    >>> root['space']['documents']['folder'] = folder
+    >>> content = Content(title="Content")
+    >>> event.notify(ObjectCreatedEvent(content))
+    >>> root['space']['documents']['folder']['content'] = content
+
+
+Add document
+    >>> actor.open("http://localhost/space/documents/folder/+/folder/")
+    >>> print actor.contents
+    <!DOCTYPE ...
+    ...
+      <label for="content-add-widgets-title" title="Item title.">Title</label>
+    ...
+      <label for="content-add-widgets-description" title="Brief summary of your content item.">Description</label>
+    ...
+    </html>
